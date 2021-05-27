@@ -380,7 +380,7 @@ public class GameManager{
 		registerCommand("chat", new ChatCommandExecutor(playerManager));
 		registerCommand("teleport", new TeleportCommandExecutor(this));
 		registerCommand("start", new StartCommandExecutor());
-		registerCommand("scenarios", new ScenarioCommandExecutor(scenarioManager));
+		registerCommand("scenarios", new ScenarioCommandExecutor(scenarioManager, playerManager, config));
 		registerCommand("teaminventory", new TeamInventoryCommandExecutor(playerManager, scenarioManager));
 		registerCommand("hub", new HubCommandExecutor(this));
 		registerCommand("iteminfo", new ItemInfoCommandExecutor());
@@ -392,6 +392,9 @@ public class GameManager{
 		registerCommand("upload", new UploadCommandExecutor());
 		registerCommand("deathmatch", new DeathmatchCommandExecutor(this, deathmatchHandler));
 		registerCommand("team", new TeamCommandExecutor(this));
+		registerCommand("ready", new ReadyCommandExecutor(this, teamManager));
+		registerCommand("kit", new KitCommandExecutor(this, playerManager, config));
+
 	}
 
 	private void registerCommand(String commandName, CommandExecutor executor){
@@ -402,6 +405,7 @@ public class GameManager{
 		}
 
 		command.setExecutor(executor);
+
 	}
 
 	public void endGame() {
