@@ -43,7 +43,7 @@ public class KitCommandExecutor implements CommandExecutor, TabCompleter {
             String kitName = String.join(" ", args);
             Kit kit = KitsManager.getKitByArgument(kitName);
             if(kit == null) {
-                player.sendMessage("§aThis Kit does not exist!");
+                player.sendMessage("§cThis Kit does not exist!");
                 return true;
             }
 

@@ -47,8 +47,14 @@ public class ScenarioCommandExecutor implements CommandExecutor, TabCompleter {
             String scenarioName = String.join(" ", argsCopy);
             Scenario scenario = scenarioManager.getScenarioByName(scenarioName).orElse(null);
 
+            if(scenario == null) {
+                p.sendMessage("§cThis scenario does not exist");
+                return true;
+            }
+
             // toggle scenario
-            if (uhcPlayer.getScenarioVotes().contains(scenario)){
+            if (uhcPlayer.getScenarioVotes().contains(scenario)) {
+                p.sendMessage("§cRemoved vote for scenario §4" + scenario.getInfo().getName());
                 uhcPlayer.getScenarioVotes().remove(scenario);
             }else{
                 int maxVotes = config.get(MainConfig.MAX_SCENARIO_VOTES);
@@ -56,6 +62,8 @@ public class ScenarioCommandExecutor implements CommandExecutor, TabCompleter {
                     p.sendMessage(Lang.SCENARIO_GLOBAL_VOTE_MAX.replace("%max%", String.valueOf(maxVotes)));
                     return true;
                 }
+
+                p.sendMessage("§aAdded vote for scenario §2" + scenario.getInfo().getName());
                 uhcPlayer.getScenarioVotes().add(scenario);
             }
         }
@@ -70,10 +78,10 @@ public class ScenarioCommandExecutor implements CommandExecutor, TabCompleter {
             options.add("vote");
         }
 
-        if(args.length == 2 && args[0].equalsIgnoreCase("vote")) {
+        if(args.length > 1 && args[0].equalsIgnoreCase("vote")) {
             if(!args[1].equalsIgnoreCase("")) {
                 for(Scenario s : scenarioManager.getRegisteredScenarios()) {
-                    options.add(s.getInfo().getName());
+                    if(s.getInfo().getName().toLowerCase().startsWith(args[1].toLowerCase())) options.add(s.getInfo().getName());
                 }
             } else {
                 options = scenarioManager.getRegisteredScenarios()
