@@ -77,6 +77,9 @@ public class Lang{
 	public static String COMMAND_SPECTATE_PLAYING;
 	public static String COMMAND_SPECTATE_SPECTATING;
 
+	public static String COMMAND_KIT_SELECTED;
+	public static String COMMAND_KIT_DOESNT_EXIST;
+
 	// Team Inventories
 	public static String TEAM_INVENTORY_MAIN;
 	public static String TEAM_INVENTORY_TEAMS_LIST;
@@ -199,6 +202,10 @@ public class Lang{
 	public static String SCENARIO_NOGOINGBACK_ERROR;
 	public static String SCENARIO_MONSTERSINC_ERROR;
 	public static String SCENARIO_TIMEBOMB_CHEST;
+
+	public static String SCENARIO_VOTE_ADDED;
+	public static String SCENARIO_VOTE_REMOVED;
+	public static String SCENARIO_DOESNT_EXIST;
 
 	public Lang(){
 		loadLangConfig();
@@ -390,6 +397,12 @@ public class Lang{
 		SCENARIO_GLOBAL_ITEM_COLOR = getString(lang, "scenarios.global.item-color", "&5");
 		SCENARIO_GLOBAL_ITEM_INFO = getString(lang, "scenarios.global.item-info", "&7(Right click for info)");
 		SCENARIO_GLOBAL_VOTE_MAX = getString(lang, "scenarios.global.vote-max", "&cMax votes reached (%max%)");
+
+		SCENARIO_VOTE_ADDED = getString(lang, "scenarios.global.vote-added", "&aVoted for Scenario &2%scenario%");
+		SCENARIO_VOTE_REMOVED = getString(lang, "scenarios.global.vote-removed", "&cRemoved vote for Scenario &4%scenario%");
+		SCENARIO_DOESNT_EXIST = getString(lang, "scenarios.global.doesnt-exist", "&cThis scenario does not exist!");
+
+		COMMAND_KIT_DOESNT_EXIST = getString(lang, "command.kit.doesnt-exist", "&cThis Kit does not exist!");
 
 		// load scenario info
 		JsonObject defaultInfo = getDefaultScenarioInfo();

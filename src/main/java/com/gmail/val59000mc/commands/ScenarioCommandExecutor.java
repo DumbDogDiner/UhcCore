@@ -48,13 +48,13 @@ public class ScenarioCommandExecutor implements CommandExecutor, TabCompleter {
             Scenario scenario = scenarioManager.getScenarioByName(scenarioName).orElse(null);
 
             if(scenario == null) {
-                p.sendMessage("§cThis scenario does not exist");
+                p.sendMessage(Lang.SCENARIO_DOESNT_EXIST);
                 return true;
             }
 
             // toggle scenario
             if (uhcPlayer.getScenarioVotes().contains(scenario)) {
-                p.sendMessage("§cRemoved vote for scenario §4" + scenario.getInfo().getName());
+                p.sendMessage(Lang.SCENARIO_VOTE_REMOVED.replace("%scenario%", scenario.getInfo().getName()));
                 uhcPlayer.getScenarioVotes().remove(scenario);
             }else{
                 int maxVotes = config.get(MainConfig.MAX_SCENARIO_VOTES);
@@ -63,7 +63,7 @@ public class ScenarioCommandExecutor implements CommandExecutor, TabCompleter {
                     return true;
                 }
 
-                p.sendMessage("§aAdded vote for scenario §2" + scenario.getInfo().getName());
+                p.sendMessage(Lang.SCENARIO_VOTE_ADDED.replace("%scenario%", scenario.getInfo().getName()));
                 uhcPlayer.getScenarioVotes().add(scenario);
             }
         }
