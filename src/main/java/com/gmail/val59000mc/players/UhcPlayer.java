@@ -257,13 +257,18 @@ public class UhcPlayer {
 		}
 	}
 
-	public void sendPrefixedMessage(String message){
-		sendMessage(Lang.DISPLAY_MESSAGE_PREFIX+" "+message);
+	public void sendMessage(String msg, boolean prefixed) {
+		if(prefixed) sendPrefixedMessage(msg);
+		else sendMessage(msg);
 	}
 
-	public void sendMessage(String message){
+	public void sendPrefixedMessage(String message) {
+		sendMessage(Lang.DISPLAY_MESSAGE_PREFIX + " " + message);
+	}
+
+	public void sendMessage(String message) {
 		try {
-			getPlayer().sendMessage(message);
+			getPlayer().sendMessage(message.replace("%prefix%", Lang.DISPLAY_MESSAGE_PREFIX));
 		} catch (UhcPlayerNotOnlineException e) {
 			// No message to send
 		}

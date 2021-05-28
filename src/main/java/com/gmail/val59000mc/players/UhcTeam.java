@@ -71,8 +71,13 @@ public class UhcTeam {
 		sendMessage(ChatColor.GREEN+"[Team] "+ChatColor.RESET+sender.getRealName()+": "+message);
 	}
 
-	public void sendMessage(String message){
-		members.forEach(p -> p.sendMessage(message));
+	public void sendMessage(String message) {
+		sendMessage(message, false);
+	}
+
+
+	public void sendMessage(String message, boolean prefixed) {
+		members.forEach(p -> p.sendMessage(message, prefixed));
 	}
 
 	public boolean contains(UhcPlayer player){
@@ -184,7 +189,7 @@ public class UhcTeam {
 		return members.stream().anyMatch(UhcPlayer::isOnline);
 	}
 
-	public void changeReadyState(){
+	public void changeReadyState() {
 		readyToStart = !readyToStart;
 
 		String message = readyToStart ? Lang.TEAM_MESSAGE_NOW_READY : Lang.TEAM_MESSAGE_NOW_NOT_READY;

@@ -374,7 +374,7 @@ public class GameManager{
 		}
 	}
 
-	private void registerCommands(){
+	private void registerCommands() {
 		// Registers CommandExecutor
 		registerCommand("uhccore", new UhcCommandExecutor(this));
 		registerCommand("chat", new ChatCommandExecutor(playerManager));

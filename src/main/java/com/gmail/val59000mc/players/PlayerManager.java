@@ -199,7 +199,7 @@ public class PlayerManager {
 			case WAITING:
 				setPlayerWaitsAtLobby(uhcPlayer);
 
-				if(gm.getConfig().get(MainConfig.AUTO_ASSIGN_PLAYER_TO_TEAM)){
+				if(gm.getConfig().get(MainConfig.AUTO_ASSIGN_PLAYER_TO_TEAM)) {
 					autoAssignPlayerToTeam(uhcPlayer);
 				}
 				uhcPlayer.sendPrefixedMessage(Lang.PLAYERS_WELCOME_NEW);

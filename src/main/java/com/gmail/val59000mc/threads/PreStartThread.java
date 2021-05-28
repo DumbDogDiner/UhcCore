@@ -62,7 +62,7 @@ public class PreStartThread implements Runnable{
 				force ||
 				(!pause && (remainingTime < 5 || (playersNumber >= minPlayers && readyTeams >= gameManager.getConfig().get(MainConfig.MINIMAL_READY_TEAMS_TO_START) && percentageReadyTeams >= gameManager.getConfig().get(MainConfig.MINIMAL_READY_TEAMS_PERCENTAGE_TO_START))))
 		){
-			if(remainingTime == timeBeforeStart+1) {
+			if(remainingTime == timeBeforeStart + 1) {
 				gameManager.broadcastInfoMessage(Lang.GAME_ENOUGH_TEAMS_READY);
 
 				UhcCore.getPlugin().getLogger().info(Lang.GAME_STARTING_IN.replace("%time%", String.valueOf(remainingTime)));
@@ -74,7 +74,8 @@ public class PreStartThread implements Runnable{
 				String bottomTitle = Lang.GAME_COUNTDOWN_BOTTOMTITLE;
 
 				gameManager.getPlayerManager().sendTitletToAll(topTitle, bottomTitle, 0, 20, 0);
-				gameManager.getPlayerManager().playSoundToAll(UniversalSound.CLICK);
+				if(remainingTime < 4)
+					gameManager.getPlayerManager().playSoundToAll(UniversalSound.ARROW_HIT);
 
 			} else if((remainingTime > 0 && remainingTime <= 10) || (remainingTime > 0 && remainingTime%10 == 0)) {
 				UhcCore.getPlugin().getLogger().info(Lang.GAME_STARTING_IN.replace("%time%", String.valueOf(remainingTime)));
