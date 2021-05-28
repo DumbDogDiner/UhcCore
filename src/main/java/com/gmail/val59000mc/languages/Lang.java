@@ -4,6 +4,7 @@ import com.gmail.val59000mc.UhcCore;
 import com.gmail.val59000mc.configuration.YamlFile;
 import com.gmail.val59000mc.scenarios.Scenario;
 import com.gmail.val59000mc.utils.FileUtils;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -18,7 +19,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lang{
+public class Lang {
+
+	public static String GAME_COUNTDOWN_BOTTOMTITLE;
+	public static String GAME_COUNTDOWN_TOPTITLE;
 
 	public static String GAME_ENOUGH_TEAMS_READY;
 	public static String GAME_STARTING;
@@ -245,6 +249,9 @@ public class Lang{
 		GAME_START_DEATHMATCH = getString(lang, "game.start-deathmatch", "Starting the deathmatch! Prepare yourself until PVP is enabled!");
 		GAME_BORDER_START_SHRINKING = getString(lang, "game.border-start-shrinking", "The border will now begin to shrink");
 		GAME_FINAL_HEAL = getString(lang, "game.final-heal", "All players have been healed to full health");
+
+		GAME_COUNTDOWN_BOTTOMTITLE = getString(lang, "game.countdown.toptitle", "%autocolor%%time%");
+		GAME_COUNTDOWN_BOTTOMTITLE = getString(lang, "game.countdown.bottomtitle", "&7Prepare for action!");
 
 		// Players
 		PLAYERS_NETHER_OFF = getString(lang, "players.nether-off", "&cThe nether has been deactivated for this game.");

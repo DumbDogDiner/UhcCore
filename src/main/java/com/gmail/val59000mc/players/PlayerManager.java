@@ -676,4 +676,19 @@ public class PlayerManager {
 		}
 	}
 
+	public void sendTitle(UhcPlayer uhcPlayer, String topTitle, String bottomTitle, int fadeIn, int stay, int fadeOut) {
+		try {
+			Player player = uhcPlayer.getPlayer();
+			player.sendTitle(topTitle, bottomTitle, fadeIn, stay, fadeOut);
+
+		} catch(UhcPlayerNotOnlineException e) {
+			e.printStackTrace();
+		}
+	}
+
+    public void sendTitletToAll(String topTitle, String bottomTitle, int fadeIn, int stay, int fadeOut) {
+		for(UhcPlayer player : getPlayersList()) {
+			sendTitle(player, topTitle, bottomTitle, fadeIn, stay, fadeOut);
+		}
+    }
 }
