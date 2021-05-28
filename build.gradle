@@ -2,11 +2,16 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
+
+        // used for shadowjar
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:5.1.0'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
     }
 }
 
@@ -17,8 +22,8 @@ allprojects {
     group = pluginGroup
     version = pluginVersion
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
     repositories {
         mavenCentral()
@@ -50,6 +55,7 @@ allprojects {
 
     processResources {
         from(sourceSets.main.resources.srcDirs) {
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
             filter ReplaceTokens, tokens: [version: version]
         }
     }
@@ -64,18 +70,25 @@ dependencies {
     //shadow 'org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT'
     shadow 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
     shadow 'com.github.MilkBowl:VaultAPI:1.7'
-    compile 'net.wesjd:anvilgui:1.5.0-SNAPSHOT'
-    compile 'com.github.Mezy:BiomeMapping:master-SNAPSHOT'
-    compile "io.papermc:paperlib:1.0.5"
-    shadow 'com.comphenix.protocol:ProtocolLib:4.4.0'
-    compile project('Support-WorldEdit-6')
-    compile project('Support-WorldEdit-7')
+
+    implementation 'net.wesjd:anvilgui:1.5.0-SNAPSHOT'
+    implementation 'com.github.Mezy:BiomeMapping:master-SNAPSHOT'
+    implementation "io.papermc:paperlib:1.0.5"
+    
+    // this should be on the server anyway
+    compileOnly 'com.comphenix.protocol:ProtocolLib:4.4.0'
+
+    implementation project('Support-WorldEdit-6')
+    implementation project('Support-WorldEdit-7')
 }
 
 shadowJar {
+    project.configurations.implementation.canBeResolved = true
+    configurations = [project.configurations.implementation]
+
     classifier = ''
-    configurations = [project.configurations.compile]
     relocate 'io.papermc.lib', 'com.gmail.val59000mc.paperlib'
+    minimize()
 }
 
 build.dependsOn(shadowJar)
