@@ -250,7 +250,7 @@ public class Lang {
 		GAME_BORDER_START_SHRINKING = getString(lang, "game.border-start-shrinking", "The border will now begin to shrink");
 		GAME_FINAL_HEAL = getString(lang, "game.final-heal", "All players have been healed to full health");
 
-		GAME_COUNTDOWN_BOTTOMTITLE = getString(lang, "game.countdown.toptitle", "%autocolor%%time%");
+		GAME_COUNTDOWN_TOPTITLE = getString(lang, "game.countdown.toptitle", "%autocolor%%time%");
 		GAME_COUNTDOWN_BOTTOMTITLE = getString(lang, "game.countdown.bottomtitle", "&7Prepare for action!");
 
 		// Players

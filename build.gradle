@@ -37,11 +37,11 @@ allprojects {
         }
         maven {
             // WorldEdit
-            url = 'http://maven.sk89q.com/repo/'
+            url = 'https://maven.sk89q.com/repo/'
         }
         maven {
             // ProtocolLib
-            url "http://repo.dmulloy2.net/nexus/repository/public/"
+            url "https://repo.dmulloy2.net/nexus/repository/public/"
         }
         // PaperLib
         maven {

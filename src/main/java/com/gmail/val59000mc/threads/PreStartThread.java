@@ -7,6 +7,7 @@ import com.gmail.val59000mc.languages.Lang;
 import com.gmail.val59000mc.players.UhcTeam;
 import com.gmail.val59000mc.utils.UniversalSound;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 
 import java.util.List;
 
@@ -70,7 +71,7 @@ public class PreStartThread implements Runnable{
 				// will add a thing for this soon dw <3
 				String colorCode = remainingTime > 5 ? "&b&l" : remainingTime > 3 ? "&6&l" : "&c&l";
 
-				String topTitle = Lang.GAME_COUNTDOWN_TOPTITLE.replace("%autocolor%", colorCode).replace("%time%", String.valueOf(remainingTime));
+				String topTitle = Lang.GAME_COUNTDOWN_TOPTITLE.replace("%autocolor%", ChatColor.translateAlternateColorCodes('&', colorCode)).replace("%time%", String.valueOf(remainingTime));
 				String bottomTitle = Lang.GAME_COUNTDOWN_BOTTOMTITLE;
 
 				gameManager.getPlayerManager().sendTitletToAll(topTitle, bottomTitle, 0, 20, 0);
@@ -83,10 +84,10 @@ public class PreStartThread implements Runnable{
 				// will add a thing for this soon dw <3
 				String colorCode = remainingTime > 5 ? "&b&l" : remainingTime > 3 ? "&6&l" : "&c&l";
 
-				String topTitle = Lang.GAME_COUNTDOWN_TOPTITLE.replace("%autocolor%", colorCode).replace("%time%", String.valueOf(remainingTime));
+				String topTitle = Lang.GAME_COUNTDOWN_TOPTITLE.replace("%autocolor%", ChatColor.translateAlternateColorCodes('&', colorCode)).replace("%time%", String.valueOf(remainingTime));
 				String bottomTitle = Lang.GAME_COUNTDOWN_BOTTOMTITLE;
 
-				gameManager.getPlayerManager().sendTitletToAll(topTitle, bottomTitle, 0, 20, 0);
+				gameManager.getPlayerManager().sendTitletToAll(topTitle, bottomTitle, 5, 20, 5);
 				gameManager.getPlayerManager().playSoundToAll(UniversalSound.CLICK);
 
 			}
