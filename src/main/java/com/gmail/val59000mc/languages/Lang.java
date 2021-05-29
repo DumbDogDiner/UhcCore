@@ -302,7 +302,7 @@ public class Lang {
 		COMMAND_SPECTATE_SPECTATING = getString(lang, "command.spectate.spectating", "&aYou're now spectating!");
 
 		// Team Inventories
-		TEAM_INVENTORY_MAIN  = getString(lang, "team.inventory.main", "&2Team Menu", 32);
+		TEAM_INVENTORY_MAIN  = getString(lang, "team.inventory.main", "&2View Teams", 32);
 		TEAM_INVENTORY_TEAMS_LIST  = getString(lang, "team.inventory.teams-list", "&2Teams List", 32);
 		TEAM_INVENTORY_TEAM_VIEW  = getString(lang, "team.inventory.team-view", "&2Viewing Team", 32);
 		TEAM_INVENTORY_SETTINGS  = getString(lang, "team.inventory.settings", "&2Team Settings", 32);

@@ -51,6 +51,7 @@ public class PlayerChatListener implements Listener{
         }
 
         // Team chat
+
 		if (
 				uhcPlayer.getState() == PlayerState.PLAYING && isTeamMessage(e, uhcPlayer)
 		){

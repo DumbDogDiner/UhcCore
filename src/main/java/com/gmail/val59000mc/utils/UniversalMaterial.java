@@ -43,6 +43,8 @@ public enum UniversalMaterial{
 
     PUFFERFISH("RAW_FISH", "PUFFERFISH", (short) 3),
 
+    MOJANG_BANNER_PATTERN,
+
     WHITE_STAINED_GLASS_PANE("STAINED_GLASS_PANE", "WHITE_STAINED_GLASS_PANE", (short) 0),
     BLACK_STAINED_GLASS_PANE("STAINED_GLASS_PANE", "BLACK_STAINED_GLASS_PANE", (short) 15),
 
@@ -86,6 +88,7 @@ public enum UniversalMaterial{
     BARRIER,
     AIR,
     COMPASS,
+    FILLED_MAP,
     NETHER_BRICK,
     RED_BANNER("BANNER", "RED_BANNER", (short) 1),
     ELYTRA,

@@ -56,7 +56,7 @@ public class PreStartThread implements Runnable{
 			}
 		}
 
-		double percentageReadyTeams = 100*readyTeams/teamsNumber;
+		double percentageReadyTeams = 100 * readyTeams / teamsNumber;
 		int playersNumber = Bukkit.getOnlinePlayers().size();
 
 		if(

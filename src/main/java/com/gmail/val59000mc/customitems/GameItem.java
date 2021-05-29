@@ -14,10 +14,13 @@ import java.util.Collections;
 
 public enum GameItem{
     // Lobby Items
-    TEAM_LIST(UniversalMaterial.PLAYER_HEAD),
+
+    // might need to merge these two
+    TEAM_LIST(UniversalMaterial.BOOK),
     TEAM_SELECTION(UniversalMaterial.IRON_SWORD),
-    KIT_SELECTION(UniversalMaterial.IRON_PICKAXE),
-    SCENARIO_VIEWER(UniversalMaterial.PAPER),
+
+    KIT_SELECTION(UniversalMaterial.CHEST),
+    SCENARIO_VIEWER(UniversalMaterial.MOJANG_BANNER_PATTERN),
     BUNGEE_ITEM(UniversalMaterial.BARRIER),
 
     // Team Setting Items
@@ -48,8 +51,9 @@ public enum GameItem{
     UNKNOWN(UniversalMaterial.AIR);
 
     private static final String LORE_PREFIX = ChatColor.DARK_GRAY + "UHC Item";
-    public static final GameItem[] LOBBY_ITEMS = new GameItem[]{
-            TEAM_LIST,
+
+    public static final GameItem[] LOBBY_ITEMS = new GameItem[] {
+            // TEAM_LIST, attempting to merge this into TEAM_SELECTION
             TEAM_SELECTION,
             KIT_SELECTION,
             CUSTOM_CRAFT_BOOK,
@@ -59,20 +63,22 @@ public enum GameItem{
 
     private final UniversalMaterial type;
 
-    GameItem(UniversalMaterial type){
+    GameItem(UniversalMaterial type) {
         this.type = type;
     }
 
-    public ItemStack getItem(){
+    public ItemStack getItem() {
         ItemStack item = type.getStack();
         ItemMeta meta = item.getItemMeta();
+
         meta.setDisplayName(getItemName());
         meta.setLore(Collections.singletonList(LORE_PREFIX));
         item.setItemMeta(meta);
+
         return item;
     }
 
-    public ItemStack getItem(String addedLore){
+    public ItemStack getItem(String addedLore) {
         ItemStack item = type.getStack();
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(getItemName());
