@@ -30,10 +30,24 @@ public class UhcItems{
 			return;
 		}
 
-		if (gameItem == GameItem.BUNGEE_ITEM){
-			player.getInventory().setItem(8, gameItem.getItem());
-		}else {
-			player.getInventory().addItem(gameItem.getItem());
+		switch(gameItem) {
+			case TEAM_LIST:
+				player.getInventory().setItem(6, gameItem.getItem());
+				break;
+			case TEAM_SELECTION:
+				player.getInventory().setItem(7, gameItem.getItem());
+				break;
+			case KIT_SELECTION:
+				player.getInventory().setItem(0, gameItem.getItem());
+				break;
+			case SCENARIO_VIEWER:
+				player.getInventory().setItem(1, gameItem.getItem());
+				break;
+			case BUNGEE_ITEM:
+				player.getInventory().setItem(8, gameItem.getItem());
+				break;
+
+
 		}
 	}
 
@@ -43,28 +57,59 @@ public class UhcItems{
 		}
 	}
 
-	public static void openTeamMainInventory(Player player, UhcPlayer uhcPlayer){
-		List<ItemStack> items = new ArrayList<>();
+	public static void openTeamMainInventory(Player player, UhcPlayer uhcPlayer) {
+		List<ItemStack> items = new ArrayList<>(Collections.nCopies(45, new ItemStack(Material.AIR)));
+
+		int maxSlots = 5 * 9;
+		int slot = 0;
+
+		GameManager gm = GameManager.getGameManager();
+		List<UhcTeam> teams = gm.getPlayerManager().listUhcTeams();
+
+		ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
+		ItemMeta meta = Objects.requireNonNull(placeholder.getItemMeta());
+
+		meta.setDisplayName(" ");
+		placeholder.setItemMeta(meta);
+
+		for(int i = 0; i < 9; i++) {
+			items.set(i, placeholder);
+			items.set(i + 36, placeholder);
+		}
+
+		for(UhcTeam team : teams) {
+
+			if (team.isSpectating()) {
+				continue;
+			}
+
+			if(slot < maxSlots){
+				ItemStack item = createTeamSkullItem(team, !gm.getConfig().get(MainConfig.TEAM_ALWAYS_READY));
+				items.set(slot + 9, item);
+				slot++;
+			}
+
+		}
 
 		if (uhcPlayer.getTeam().isSolo()){
 			// Invites item
-			items.add(GameItem.TEAM_VIEW_INVITES.getItem());
+			items.set(37, GameItem.TEAM_VIEW_INVITES.getItem());
 		}
 
 		if (uhcPlayer.isTeamLeader()){
 			// Invite player item
-			items.add(GameItem.TEAM_INVITE_PLAYER.getItem());
+			items.set(39, GameItem.TEAM_INVITE_PLAYER.getItem());
 			// Team settings item
-			items.add(GameItem.TEAM_SETTINGS.getItem());
+			items.set(41, GameItem.TEAM_SETTINGS.getItem());
 		}
 
-		items.add(GameItem.TEAM_LEAVE.getItem());
+		items.set(43, GameItem.TEAM_LEAVE.getItem());
 
-		player.openInventory(createInventory(items, Lang.TEAM_INVENTORY_MAIN));
+		player.openInventory(createLargeInventory(items, Lang.TEAM_INVENTORY_MAIN));
 	}
 
 	public static void openTeamsListInventory(Player player){
-		int maxSlots = 6*9;
+		int maxSlots = 6 * 9;
 		Inventory inv = Bukkit.createInventory(null, maxSlots, Lang.TEAM_INVENTORY_TEAMS_LIST);
 		int slot = 0;
 		GameManager gm = GameManager.getGameManager();
@@ -225,7 +270,7 @@ public class UhcItems{
 		player.openInventory(createInventory(items, Lang.TEAM_INVENTORY_SETTINGS));
 	}
 
-	private static Inventory createInventory(List<ItemStack> items, String title){
+	private static Inventory createInventory(List<ItemStack> items, String title) {
 		Inventory inv;
 		int size = items.size();
 
@@ -256,6 +301,21 @@ public class UhcItems{
 			inv.setItem(4, items.get(2));
 			inv.setItem(6, items.get(3));
 			inv.setItem(8, items.get(4));
+		}
+
+		return inv;
+	}
+
+	// modified createInventory() to allow for bigger invs
+	private static Inventory createLargeInventory(List<ItemStack> items, String title) {
+		Inventory inv = Bukkit.createInventory(null, 5 * 9, title);
+
+		for(int i = 0; i < items.size(); i++) {
+			ItemStack item = items.get(i);
+			if(item == null) continue;
+
+			inv.setItem(i, item);
+
 		}
 
 		return inv;

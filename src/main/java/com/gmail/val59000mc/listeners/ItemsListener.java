@@ -206,7 +206,7 @@ public class ItemsListener implements Listener {
 			}
 		}
 
-		if(event.getView().getTitle().equals(Lang.ITEMS_CRAFT_BOOK_INVENTORY)){
+		if(event.getView().getTitle().equals(Lang.ITEMS_CRAFT_BOOK_INVENTORY)) {
 			event.setCancelled(true);
 			
 			if(CraftsManager.isCraftItem(item)){

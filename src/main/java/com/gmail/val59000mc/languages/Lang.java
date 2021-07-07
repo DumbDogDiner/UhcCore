@@ -4,6 +4,7 @@ import com.gmail.val59000mc.UhcCore;
 import com.gmail.val59000mc.configuration.YamlFile;
 import com.gmail.val59000mc.scenarios.Scenario;
 import com.gmail.val59000mc.utils.FileUtils;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -18,7 +19,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lang{
+public class Lang {
+
+	public static String GAME_COUNTDOWN_BOTTOMTITLE;
+	public static String GAME_COUNTDOWN_TOPTITLE;
 
 	public static String GAME_ENOUGH_TEAMS_READY;
 	public static String GAME_STARTING;
@@ -76,6 +80,9 @@ public class Lang{
 	public static String COMMAND_SPECTATE_ERROR;
 	public static String COMMAND_SPECTATE_PLAYING;
 	public static String COMMAND_SPECTATE_SPECTATING;
+
+	public static String COMMAND_KIT_SELECTED;
+	public static String COMMAND_KIT_DOESNT_EXIST;
 
 	// Team Inventories
 	public static String TEAM_INVENTORY_MAIN;
@@ -200,6 +207,10 @@ public class Lang{
 	public static String SCENARIO_MONSTERSINC_ERROR;
 	public static String SCENARIO_TIMEBOMB_CHEST;
 
+	public static String SCENARIO_VOTE_ADDED;
+	public static String SCENARIO_VOTE_REMOVED;
+	public static String SCENARIO_DOESNT_EXIST;
+
 	public Lang(){
 		loadLangConfig();
 	}
@@ -238,6 +249,9 @@ public class Lang{
 		GAME_START_DEATHMATCH = getString(lang, "game.start-deathmatch", "Starting the deathmatch! Prepare yourself until PVP is enabled!");
 		GAME_BORDER_START_SHRINKING = getString(lang, "game.border-start-shrinking", "The border will now begin to shrink");
 		GAME_FINAL_HEAL = getString(lang, "game.final-heal", "All players have been healed to full health");
+
+		GAME_COUNTDOWN_TOPTITLE = getString(lang, "game.countdown.toptitle", "%autocolor%%time%");
+		GAME_COUNTDOWN_BOTTOMTITLE = getString(lang, "game.countdown.bottomtitle", "&7Prepare for action!");
 
 		// Players
 		PLAYERS_NETHER_OFF = getString(lang, "players.nether-off", "&cThe nether has been deactivated for this game.");
@@ -288,7 +302,7 @@ public class Lang{
 		COMMAND_SPECTATE_SPECTATING = getString(lang, "command.spectate.spectating", "&aYou're now spectating!");
 
 		// Team Inventories
-		TEAM_INVENTORY_MAIN  = getString(lang, "team.inventory.main", "&2Team Menu", 32);
+		TEAM_INVENTORY_MAIN  = getString(lang, "team.inventory.main", "&2View Teams", 32);
 		TEAM_INVENTORY_TEAMS_LIST  = getString(lang, "team.inventory.teams-list", "&2Teams List", 32);
 		TEAM_INVENTORY_TEAM_VIEW  = getString(lang, "team.inventory.team-view", "&2Viewing Team", 32);
 		TEAM_INVENTORY_SETTINGS  = getString(lang, "team.inventory.settings", "&2Team Settings", 32);
@@ -390,6 +404,12 @@ public class Lang{
 		SCENARIO_GLOBAL_ITEM_COLOR = getString(lang, "scenarios.global.item-color", "&5");
 		SCENARIO_GLOBAL_ITEM_INFO = getString(lang, "scenarios.global.item-info", "&7(Right click for info)");
 		SCENARIO_GLOBAL_VOTE_MAX = getString(lang, "scenarios.global.vote-max", "&cMax votes reached (%max%)");
+
+		SCENARIO_VOTE_ADDED = getString(lang, "scenarios.global.vote-added", "&aVoted for Scenario &2%scenario%");
+		SCENARIO_VOTE_REMOVED = getString(lang, "scenarios.global.vote-removed", "&cRemoved vote for Scenario &4%scenario%");
+		SCENARIO_DOESNT_EXIST = getString(lang, "scenarios.global.doesnt-exist", "&cThis scenario does not exist!");
+
+		COMMAND_KIT_DOESNT_EXIST = getString(lang, "command.kit.doesnt-exist", "&cThis Kit does not exist!");
 
 		// load scenario info
 		JsonObject defaultInfo = getDefaultScenarioInfo();

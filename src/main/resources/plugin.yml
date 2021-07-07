@@ -1,8 +1,8 @@
 name: UhcCore
 main: com.gmail.val59000mc.UhcCore
 version: @version@
-description: Automates UHC games on a dedicated server
-author: val59000mc, Mezy
+description: Automates UHC games on a dedicated server (Custom DDD Fork)
+author: val59000mc, Mezy, Kokumaji
 softdepend: [WorldEdit,Vault,ProtocolLib]
 api-version: 1.13
 commands:
@@ -68,3 +68,9 @@ commands:
   team:
     description: "Used to manage teams."
     usage: /<command> <sub-command>
+  ready:
+    description: "Toggle the team ready state"
+    usage: /<command>
+  kit:
+    description: "Pick a Kit"
+    usage: /<command> <kit>

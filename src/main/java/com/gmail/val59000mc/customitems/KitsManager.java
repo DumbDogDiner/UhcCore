@@ -25,8 +25,12 @@ public class KitsManager{
 
 	private final static List<Kit> kits;
 
-	static{
+	static {
 		kits = new ArrayList<>();
+	}
+
+	public static List<Kit> getKits() {
+		return kits;
 	}
 	
 	public static boolean isAtLeastOneKit(){
@@ -149,9 +153,23 @@ public class KitsManager{
 		return false;
 	}
 
-	public static Kit getKitByName(String displayName){
+	public static Kit getKitByName(String displayName) {
 		for(Kit kit : kits){
 			if(kit.getSymbol().getItemMeta().getDisplayName().equals(displayName))
+				return kit;
+		}
+		return null;
+	}
+
+	/**
+	 * Gets a Kit by provided String argument
+	 * @param argument the search term
+	 * @return The Kit if it exists, else null
+	 */
+	public static Kit getKitByArgument(String argument) {
+		for(Kit kit : kits) {
+			System.out.printf("%s : Argument %2s : KitName %3s%n", kit.getName().equalsIgnoreCase(argument), argument, kit.getName());
+			if(kit.getName().equalsIgnoreCase(argument))
 				return kit;
 		}
 		return null;

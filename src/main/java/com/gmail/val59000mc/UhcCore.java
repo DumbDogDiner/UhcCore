@@ -16,7 +16,7 @@ public class UhcCore extends JavaPlugin{
 	private Updater updater;
 
 	@Override
-	public void onEnable(){
+	public void onEnable() {
 		pl = this;
 
 		loadServerVersion();

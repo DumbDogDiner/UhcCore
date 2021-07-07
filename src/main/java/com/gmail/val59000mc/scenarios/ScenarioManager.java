@@ -152,8 +152,9 @@ public class ScenarioManager {
      * @return Returns a scenario object matching the name, or null when not found.
      */
     public Optional<Scenario> getScenarioByName(String name) {
+        // case insensitive search to make things easier :)
         return registeredScenarios.stream()
-                .filter(s -> name.contains(s.getInfo().getName()))
+                .filter(s -> name.toLowerCase().contains(s.getInfo().getName().toLowerCase()))
                 .findFirst();
     }
 
@@ -302,6 +303,10 @@ public class ScenarioManager {
         for (Scenario scenario : active){
             disableScenario(scenario);
         }
+    }
+
+    public List<Scenario> getRegisteredScenarios() {
+        return registeredScenarios;
     }
 
     public void countVotes() {
